@@ -53,6 +53,11 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (Exception e) {
             System.err.println("User not added");
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
@@ -68,6 +73,11 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (Exception e) {
             System.err.println("User not removed");
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
